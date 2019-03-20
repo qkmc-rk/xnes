@@ -20,16 +20,16 @@
 					<h2>任务详情- 校内二手交易生活平台</h2>
 				</li>
 				<!--页面链接-->
-				<li class="layui-nav-item"><a href="publish">发布信息</a></li>
+				<li class="layui-nav-item"><a href="publish">发布二手/跑腿任务</a></li>
 				<li class="layui-nav-item"><a href="mypublish">我的发布</a></li>
-				<li class="layui-nav-item"><a href="mywork">我的任务</a></li>
-				<li class="layui-nav-item"><a href="works">最新发布</a></li>
+				<li class="layui-nav-item"><a href="mywork">已接任务/已预约物品</a></li>
+				<li class="layui-nav-item"><a href="works">最新发布信息</a></li>
 				<!--//页面链接-->
 				<li class="layui-nav-item">
 					<a href="center">个人中心<span class="layui-badge-dot"></span></a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="center"><img src="<%=request.getContextPath()%>/static/img/login/avtar.png" class="layui-nav-img" />${userPrimInfo.neckname }</a>
+					<a href="center"><img th:src="@{/img/login/avtar.png}" class="layui-nav-img" th:value="${userPrimInfo.neckname}" />${userPrimInfo.neckname }</a>
 				</li>
 			</ul>
 			<!--//导航栏-->
