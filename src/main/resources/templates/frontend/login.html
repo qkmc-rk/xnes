@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>登录 - 校内二手交易生活平台</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8" />
+		<link th:href="@{/css/login/style.css}" rel='stylesheet' type='text/css' />
+		<script  th:src="@{/js/jquery-2.1.0.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/layui/layui.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/js/front/login.js}" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		
+		
+		<!--SIGN UP-->
+		<h1>校内二手交易生活平台  - 登录</h1>
+		<div class="login-form">
+			<div class="close"> </div>
+			<div class="head-info">
+				<label class="lbl-1"> </label>
+				<label class="lbl-2"> </label>
+				<label class="lbl-3"> </label>
+			</div>
+			<div class="clear"> </div>
+			<div class="avtar">
+				<img th:src="@{/img/login/avtar.png}" />
+			</div>
+			<form>
+				<input type="text" id="account" class="text" value="用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}">
+				<div class="key">
+					<input type="password" id="password" value="密码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '密码';}">
+				</div>
+			</form>
+			<div class="signin">
+				<input type="submit" onclick="ajaxLogin()" value="登录">
+			</div>
+			<div class="signin">
+				<a href="forget" style="color: white;">找回密码</a> | <a href="regist" style="color: white;">注册账号</a>
+			</div>
+		</div>
+		<div class="copy-rights">
+			<p>
+				Powered by ZhangHong
+			</p>
+		</div>
+		<button type="button" value="text" onclick="layuitest()"></button>
+
+	</body>
+
+</html>

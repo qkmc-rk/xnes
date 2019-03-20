@@ -1,10 +1,8 @@
 package com.rk.xnes.controller;
 
-import com.rk.xnes.dao.UserDao;
 import com.rk.xnes.dao.impl.UserDaoImpl;
 import com.rk.xnes.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>后台管理登录 - 大学生校园互助平台</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/back/layui/css/layui.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/back/css/public.css}"/>
+		<script th:src="@{/back/js/jquery-2.1.0.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/back/layui/layui.js}" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.layui-body{
+				left: 0;
+			}
+			.login-body{
+/*				background-color: #C2BE9E;*/
+				width: 435px;
+				height: 300px;
+				margin: auto;
+				margin-top:200px;
+				border: 1px solid #9F9F9F;
+				border-radius: 10px;
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="layui-header">
+			<div class="top-bar">
+				<h1 style="position: absolute; margin-left: 10px; margin-top: 12px; color: white;"><a href="#" style="color: #FFB800;">校内二手交易生活平台</a></h1>
+			</div>
+		</div>
+		<!--main content-->
+		<div class="layui-body layui-login" style="background-color: #EEEEEE;">
+			<div class="login-body">
+				<h1 style="width: 100%; text-align: center; font-size: 32px; margin-bottom: 50px;">管理员登录</h1>
+				<div class="layui-form">
+					<div class="layui-form-item">
+			          <label class="layui-form-label">输入账号</label>
+			          <div class="layui-input-inline">
+			            <input type="text" name="account" required="" lay-verify="required" lay-vertype="tips" placeholder="请输入管理员账号" autocomplete="off" class="layui-input">
+			          </div>
+			          <div class="layui-form-mid layui-word-aux">仅管理员账号可用</div>
+			        </div>
+			        <div class="layui-form-item">
+			          <label class="layui-form-label">输入密码</label>
+			          <div class="layui-input-inline">
+			            <input type="password" name="password" required="" lay-verify="required" lay-vertype="tips" placeholder="请输入密码" autocomplete="off" class="layui-input">
+			          </div>
+			          <div class="layui-form-mid layui-word-aux">管理员密码</div>
+			        </div>
+			        <div class="layui-form-item">
+			          <div class="layui-input-block">
+			            <button type="reset" class="layui-btn layui-btn-primary" onclick="toreset()">重置</button>
+			            <button class="layui-btn" lay-filter="formDemo" onclick="tologin()">登录</button>
+			          </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+		<script th:src="@{/back/js/public.js}" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
