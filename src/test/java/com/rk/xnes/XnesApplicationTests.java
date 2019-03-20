@@ -16,12 +16,4 @@ public class XnesApplicationTests {
     public void contextLoads() {
     }
 
-    @Test
-    public void m(){
-        System.out.println("测试dao开始");
-        UserDao userDao = new UserDaoImpl();
-        userDao.selectById(200031);
-        System.out.println("测试dao结束");
-    }
-
 }
