@@ -17,8 +17,14 @@ import com.rk.xnes.entity.Comment;
 @Repository("CommentDao")
 public class CommentDaoImpl implements CommentDao {
 
-	@Autowired
+
 	JdbcTemplate jdbct;
+
+	@Autowired
+	public CommentDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Comment selectById(Integer id) {
 		String sql = "select * from t_comment where id=?";

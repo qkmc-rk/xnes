@@ -17,9 +17,13 @@ import com.rk.xnes.entity.Notice;
 @Repository("noticeDao")
 public class NoticeDaoImpl implements NoticeDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public NoticeDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Integer add(Notice notice) {
 		String sql ="insert into t_notice(cretime,creatorid,notice)values(?,?,?)"; 

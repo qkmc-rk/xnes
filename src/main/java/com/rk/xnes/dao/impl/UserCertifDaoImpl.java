@@ -17,9 +17,13 @@ import com.rk.xnes.entity.UserCertif;
 @Repository("userCertifDao")
 public class UserCertifDaoImpl implements UserCertifDao {
 	
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public UserCertifDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Integer add(UserCertif userCertif) {
 		String sql = "insert into t_usercertif(userid,state,cardpath)values(?,?,?)";

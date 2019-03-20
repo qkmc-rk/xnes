@@ -12,9 +12,13 @@ import com.rk.xnes.entity.UserToken;
 @Repository("userTokenDao")
 public class UserTokenDaoImpl implements UserTokenDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public UserTokenDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public UserToken selectById(Integer id) {
 		String sql = "select * from t_usertoken where id=?";

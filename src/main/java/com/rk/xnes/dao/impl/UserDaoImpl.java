@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.rk.xnes.dao.UserDao;
 import com.rk.xnes.entity.User;
 
-import javax.annotation.Resource;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {

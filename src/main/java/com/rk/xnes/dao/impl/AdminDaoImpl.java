@@ -13,8 +13,13 @@ import com.rk.xnes.entity.Admin;
 @Repository("AdminDao")
 public class AdminDaoImpl implements AdminDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
+
+	@Autowired
+	public AdminDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Admin selectById(Integer id) {
 		String sql = "select * from t_admin where id=?";

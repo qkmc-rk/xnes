@@ -13,9 +13,13 @@ import com.rk.xnes.entity.UserPortrait;
 public class UserPortraitDaoImpl implements UserPortraitDao {
 
 
-	@Autowired
 	JdbcTemplate jdbct;
-		
+
+	@Autowired
+	public UserPortraitDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public UserPortrait selectById(Integer id) {
 		String sql = "select * from t_userportrait where id=?";

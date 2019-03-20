@@ -12,9 +12,13 @@ import com.rk.xnes.entity.UserQuestion;
 @Repository("userQuestionDao")
 public class UserQuestionDaoImpl implements UserQuestionDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public UserQuestionDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public UserQuestion selectById(Integer id) {
 		String sql = "select * from t_userquestion where id=?";

@@ -12,9 +12,13 @@ import com.rk.xnes.entity.HelpState;
 @Repository("helpStateDao")
 public class HelpStateDaoImpl implements HelpStateDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public HelpStateDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Integer add(HelpState helpState) {
 		String sql = "insert into t_helpstate(infoid,timeout,received,receiverid,achieved)values(?,?,?,?,?)";

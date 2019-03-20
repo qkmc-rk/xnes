@@ -17,8 +17,13 @@ import com.rk.xnes.entity.HelpInfo;
 @Repository("helpInfoDao")
 public class HelpInfoDaoImpl implements HelpInfoDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
+
+	@Autowired
+	public HelpInfoDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public Integer add(HelpInfo helpInfo) {
 		String sql = "insert into t_helpinfo(userid,crettime,"

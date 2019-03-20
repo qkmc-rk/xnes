@@ -11,9 +11,13 @@ import com.rk.xnes.entity.UserPrimInfo;
 @Repository("userPrimInfoDao")
 public class UserPrimInfoDaoImpl implements UserPrimInfoDao {
 
-	@Autowired
 	JdbcTemplate jdbct;
-	
+
+	@Autowired
+	public UserPrimInfoDaoImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbct = jdbcTemplate;
+	}
+
 	@Override
 	public UserPrimInfo selectById(Integer id) {
 		String sql = "select * from t_userpriminfo where id=?";
