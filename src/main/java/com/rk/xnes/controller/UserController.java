@@ -133,6 +133,8 @@ public class UserController {
 		modelMap.put("userPrimInfo", userPrimInfo);
 		modelMap.put("userQuestion", userQuestion);
 		modelMap.put("userToken", userToken);
+		//2019321  ╪сио
+		modelMap.put("user", user);
 		
 		mdv.addAllObjects(modelMap);
 		mdv.setViewName("/frontend/center");

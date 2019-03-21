@@ -85,12 +85,12 @@ public class PasswordAssistantImpl implements PasswordAssistant {
 					"			</div>\r\n" + 
 					"			<h2>新的密码:<i style=\"color: red;\">" + newPsd + "</i></h2>\r\n" + 
 					"			<p>旧密码为:<b>" + oldPsd + "</b>,除此之外您可以在网站上登录您的账号,并重置相关信息!</p>\r\n" +
-					"           <p>以上内容来自大学生校园互助平台,请勿答复!<a href=\"#\">大学生校园互助平台</a></p>   " +
+					"           <p>以上内容来自校内二手交易生活平台,请勿答复!<a href=\"#\">校内二手交易生活平台</a></p>   " +
 					"		</div>\r\n" + 
 					"	</body>\r\n" + 
 					"</html>", true);
 			//加载图片资源
-			ClassPathResource res = new ClassPathResource("victory.jpg");
+			ClassPathResource res = new ClassPathResource("victory.png");
 			helper.addInline("victory", res);
 			sender.send(message);
 		} catch (MessagingException e) {

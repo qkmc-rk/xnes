@@ -31,9 +31,6 @@
 				<li class="layui-nav-item">
 					<a href="center">个人中心<span class="layui-badge-dot"></span></a>
 				</li>
-				<li class="layui-nav-item">
-					<a href="center"><img th:src="@{/img/login/avtar.png}" class="layui-nav-img" th:value="${userPrimInfo.neckname}"/>${userPrimInfo.neckname }</a>
-				</li>
 			</ul>
 			<!--//导航栏-->
 			<!--主要内容-->
@@ -90,7 +87,7 @@
 				    elem: '#test1' //绑定元素
 				    ,accept: 'file'
 				    , multiple: true
-				    ,url: 'certify/usercertify' //上传接口
+				    ,url: '[[${#httpServletRequest.getContextPath()}]]/certify/usercertify' //上传接口
 				    ,done: function(res){
 					    if(res.result == 'true'){
 					    	uploadsuccess();

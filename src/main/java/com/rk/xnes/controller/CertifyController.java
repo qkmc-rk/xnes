@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,8 +63,8 @@ public class CertifyController {
 		String fileName = img.getOriginalFilename();
 		fileName = fileName.hashCode() + fileName;
 		
-		String realPath = "/idcardimg";
-		String imgPath = session.getServletContext().getRealPath(realPath);
+		//String realPath = "/idcardimg";
+		String imgPath = ClassUtils.getDefaultClassLoader().getResource("").getPath()+"static/";
 		System.out.println("Â·¾¶3:" + imgPath);
 		File file = new File(imgPath,fileName);
 		img.transferTo(file);

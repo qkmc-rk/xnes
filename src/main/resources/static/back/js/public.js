@@ -11,7 +11,7 @@ function tologin(){
 	// 使用ajax进行登录操作
 	$.ajax({
 		type:"post",
-		url:"login",
+		url:"admin/login",
 		async:true,
 		data:{
 			'account':account,
@@ -32,7 +32,7 @@ function tologin(){
 				// 跳转到index.
 				setInterval(() => {
 					if(ls.getItem('userid') != null && ls.getItem('token')){
-						window.location.href="index";
+						window.location.href="admin/index";
 					}
 					else{
 						failedLSMsg();
@@ -82,16 +82,6 @@ function failedLSMsg(){
 		 var layer = layui.layer;
 		 layer.msg('登录获取的信息有误,请重新登录尝试!');
 	});
-}
-
-/*退出登录  */
-function loginoff(){
-	
-	/* 取消localStorage */
-	var ls = window.localStorage;
-	ls.clear();
-	successMsg();
-	window.location.href="loginpage";
 }
 
 

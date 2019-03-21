@@ -74,6 +74,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addViewController("/regist").setViewName("/frontend/regist");
         registry.addViewController("/login").setViewName("/frontend/login");
         registry.addViewController("/forget").setViewName("/frontend/findpassword");
-        registry.addViewController("/admin/login").setViewName("/backend/login");
+        registry.addViewController("/adminlogin").setViewName("/backend/login");
     }
 }
