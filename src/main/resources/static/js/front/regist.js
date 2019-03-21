@@ -62,7 +62,7 @@ function ajax_regist(){
 			}else{
 				registsuccess();
 				//暂时这样设置,会出问题
-				window.location.href = "/campusMutual/logpage";
+				window.location.href = "login";
 			}
 		},
 		error:function(){
