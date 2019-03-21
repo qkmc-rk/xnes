@@ -1,5 +1,7 @@
 # xnes
-xiao nei er shou
+> 这是一个毕业设计作品：
+### 校内二手交易生活平台
+> 非常简单，使用springboot搭建，thymeleaf模板，又有一些前后端分离的味道在里面
 
 ## 20190320
 * 修复bug连接mysql 时区问题
