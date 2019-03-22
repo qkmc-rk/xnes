@@ -181,11 +181,11 @@ public class UserController {
 				HelpState hs = taskService.findByInfoId(helpInfo.getId());
 				listState.add(hs);
 			}
-			UserPrimInfo userPrimInfo = userService.getUserPrimInfo(userid);
 			mdv.addObject("helpStateList", listState);
-			mdv.addObject("userPrimInfo", userPrimInfo);
-			mdv.addObject("user", user);
 		}
+		mdv.addObject("user", user);
+		UserPrimInfo userPrimInfo = userService.getUserPrimInfo(userid);
+		mdv.addObject("userPrimInfo", userPrimInfo);
 		mdv.setViewName("/frontend/mypublish");
 		//将helpinfo的list放在model中,将user放入并返回页面.
 		return mdv;

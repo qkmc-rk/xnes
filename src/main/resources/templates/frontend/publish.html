@@ -22,10 +22,13 @@
 			<li class="layui-nav-item"><a href="works">最新发布信息</a></li>
 			<!--//页面链接-->
 			<li class="layui-nav-item"><a href="center">个人中心<span
-					class="layui-badge-dot"></span></a></li>
-			<li class="layui-nav-item"><a href="center"><img
-					th:src="@{/img/login/avtar.png}"
-					class="layui-nav-img" th:value="${userPrimInfo.neckname }" />userPrimInfo.neckname</a></li>
+					class="layui-badge-dot"></span></a>
+			</li>
+			<li class="layui-nav-item">
+				<img th:src="@{/img/login/avtar.png}" class="layui-nav-img" />
+				<a style="display: inline" th:text="${userPrimInfo.neckname }" href="center">
+				</a>
+			</li>
 		</ul>
 		<!--//导航栏-->
 		<!--主要内容-->
@@ -113,6 +116,7 @@
 		</script>
 	<script type="text/javascript">
 		var rootPath = $("input[name=contextPath]").val();
+		//alert(rootPath); //    /xnes
 		var E = window.wangEditor;
 	
 		var editor = new E('#editor');
@@ -123,9 +127,8 @@
 		/*上传完成的动作*/
 		editor.customConfig.uploadImgHooks = {
 			customInsert : function(insertImg, result, editor) {
-				var host = "http://" + location.hostname + ":" + location.port + '/';
-				var url = host + rootPath
-						+ result.data[0];
+				var host = "http://" + location.hostname + ":" + location.port;
+				var url = host + rootPath + "/" + result.data[0];
 				insertImg(url);
 			},
 			fail : function(xhr, editor, result) {

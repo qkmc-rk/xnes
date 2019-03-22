@@ -1,6 +1,6 @@
 function finish(obj){
-	var infoid = $(obj).attr('title');
-	//alert(infoid);
+	var infoid = $(obj).attr('name');
+	alert(infoid);
 	var root = $("#rootPath").val();
 	
 	//开始注册

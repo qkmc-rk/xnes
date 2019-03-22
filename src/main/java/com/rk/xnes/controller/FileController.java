@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,13 +46,12 @@ public class FileController {
 			fileName = fileName.hashCode() + fileName;
 			System.out.println("文件名" + fileName);
 			//定义一个文件
-			String realPath = "/static/uploadfile";
-			String imgPath = session.getServletContext().getRealPath(realPath);
+			String imgPath = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/";
 			System.out.println("路径3:" + imgPath);
 			File file = new File(imgPath,fileName);
 			img.transferTo(file);
 			System.out.println("上传成功23");
-			return "{\"errno\": 0,\"data\": [\"/static/uploadfile/"+ fileName +"\"]}";
+			return "{\"errno\": 0,\"data\": [\" " + fileName + "\"]}";
 		}else {
 			return "{\"errno\": -1}";
 		}

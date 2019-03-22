@@ -92,7 +92,7 @@ function ajaxSaveSafe(){
 function updatefailed(){
 	layui.use('layer',function(){
 		 var layer = layui.layer;
-		 layer.msg('更新失败');
+		 layer.msg('更新失败(注意性别不能选非人哉)');
 	});
 }
 function updatesuccess(){

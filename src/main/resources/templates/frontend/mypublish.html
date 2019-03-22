@@ -21,16 +21,17 @@
 					<h2>我的 - 大学生校园互助平台</h2>
 				</li>
 				<!--页面链接-->
-				<li class="layui-nav-item"><a href="publish">发布信息</a></li>
+				<li class="layui-nav-item"><a href="publish">发布二手/跑腿任务</a></li>
 				<li class="layui-nav-item"><a href="mypublish">我的发布</a></li>
-				<li class="layui-nav-item"><a href="mywork">我的任务</a></li>
-				<li class="layui-nav-item"><a href="works">最新发布</a></li>
+				<li class="layui-nav-item"><a href="mywork">已接任务/已预约物品</a></li>
+				<li class="layui-nav-item"><a href="works">最新发布信息</a></li>
 				<!--//页面链接-->
 				<li class="layui-nav-item"><a href="center">个人中心<span
 						class="layui-badge-dot"></span></a></li>
-				<li class="layui-nav-item"><a href="center" th:value="${userPrimInfo.neckname}"><img
-						th:src="@{/img/login/avtar.png}"
-						class="layui-nav-img" /></a></li>
+				<li class="layui-nav-item">
+					<img th:src="@{/img/login/avtar.png}" class="layui-nav-img" /><a style="display: inline" href="center" th:text="${userPrimInfo.neckname}">
+					</a>
+				</li>
 			</ul>
 			<!--//导航栏-->
 			<!--主要内容-->
@@ -47,9 +48,9 @@
 					<!--基础信息内容-->
 					<div class="layui-elem-quote mypublish1" th:each="helpInfo,iterStat:${helpInfoList}">
 						<p>
-							<i style="color: red;" th:value="${helpInfo.title}"></i>
-							| 创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}"></b>
-                            | 截止时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.timeout,'yyyy-mm-dd')}"></b>
+							<i style="color: red;" th:text="${helpInfo.title}"></i>
+							| 创建时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.crettime,'yyyy-MM-dd')}"></b>
+                            | 截止时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.timeout,'yyyy-MM-dd')}"></b>
                             <!--任务状态:  -->
 
                             | <big style="color:green" th:if="${helpStateList[iterStat.index].received > 0 && helpStateList[iterStat.index].achieved > 0}"> 已完成</big>
@@ -57,18 +58,19 @@
                             | <big style="color:gray" th:if="${helpStateList[iterStat.index].received < 1 && helpStateList[iterStat.index].achieved < 1}"> 等待接受</big>
 
                             <!--已完成-->
-                            [<a th:if="${helpStateList[iterStat.index].achieved} > 0" href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
+                            <a th:if="${helpStateList[iterStat.index].achieved} > 0" th:href="'my_detail?infoid=' + ${helpInfo.id }">[查看]</a>
 
                             <!--未完成-->
                             <!--已经被接收-->
-                            [<a th:if="${helpStateList[iterStat.index].received == 1 && helpStateList[iterStat.index].achieved < 1}" href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
+                            [<a th:if="${helpStateList[iterStat.index].received == 1 && helpStateList[iterStat.index].achieved < 1}" th:href="'my_detail?infoid=' + ${helpInfo.id }">查看</a>]
                             <!--未被接收-->
-                            <div th:if="${helpStateList[iterStat.index].received == 0 && helpStateList[iterStat.index].achieved < 1}">
-                                [
-                                <a href="javascript:delete_([[${helpInfo.id }]]);">删除</a>] | [
-                                <a href="javascript:showchangeMoney([[${helpInfo.id }]]);">更改赏金</a>] | [
-                                <a href="javascript:showchangeDate([[${helpInfo.id }]]);">更改时间</a>] | [
-                                <a href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
+
+                            <div th:if="${helpStateList[iterStat.index].received == 1 && helpStateList[iterStat.index].achieved < 1}">
+
+                                <a th:href="'javascript:delete_('+ ${helpInfo.id} +');'">[删除]</a> |
+                                <a th:href="'javascript:showchangeMoney(' + ${helpInfo.id} + ');'">[更改金额]</a> |
+                                <a th:href="'javascript:showchangeDate(' + ${helpInfo.id} +');'">[更改时间]</a> |
+                                <a th:href="'my_detail?infoid=' + ${helpInfo.id }">[查看]</a>
                             </div>
                         </p>
 					</div>
@@ -96,14 +98,14 @@
 		</div>
 		<!--modal结束  -->
 		<!-- js -->
-		<script type="text/javascript">
+		<script th:inline="javascript">
 		
-			function delete_(objs){
-				var infoid = objs;
-
+			function delete_(obj){
+				var infoid = obj;
+				alert(infoid);
 				$.ajax({
 					type:"post",
-					url:'task/' + 'delete',
+					url:'' + [[${#httpServletRequest.getContextPath()}]] + '/task/' + 'delete',
 					async:true,
 					data:{
 						'infoid':infoid
@@ -127,11 +129,13 @@
 			}
 			/* 更改赏金 */
 			
-			function changereward(objs){
-				var infoid = objs;
+			function changereward(obj){
+
+				var infoid = obj;
+
 				$.ajax({
 					type:"post",
-					url:"task/changereward",
+					url:'' + [[${#httpServletRequest.getContextPath()}]] +  "/task/changereward",
 					async:true,
 					data:{
 						'infoid':infoid,
@@ -152,14 +156,14 @@
 				});
 			}
 			
-			function changetime(objs){
+			function changetime(obj){
 				
 				alert($('#layer-date').val());
 				
-				var infoid = objs;
+				var infoid = obj;
 				$.ajax({
 					type:"post",
-					url:"task/changetimeout",
+					url:'' + [[${#httpServletRequest.getContextPath()}]] +  "/task/changetimeout",
 					async:true,
 					data:{
 						'infoid':infoid,
@@ -185,8 +189,8 @@
 				layui.use('layer',function(){
 					 var layer = layui.layer;
 					 layer.open({
-						title: '更改赏金'
-						,content:'<input type="number" id="layer-money" name="layer-money" placeholder="请输入赏金" class="layui-input">'
+						title: '更改金额'
+						,content:'<input type="number" id="layer-money" name="layer-money" placeholder="请输入金额" class="layui-input">'
 						,btn:['更改']
 						,yes:function(index,layero){
 							changereward(obj);

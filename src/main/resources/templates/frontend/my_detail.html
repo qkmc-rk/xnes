@@ -29,7 +29,7 @@
 					<a href="center">个人中心<span class="layui-badge-dot"></span></a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="center"><img th:src="@{/img/login/avtar.png}" class="layui-nav-img" th:value="${userPrimInfo.neckname}" />${userPrimInfo.neckname }</a>
+					<img th:src="@{/img/login/avtar.png}" class="layui-nav-img"  /><a style="display: inline" href="center" th:text="${userPrimInfo.neckname}"></a>
 				</li>
 			</ul>
 			<!--//导航栏-->
@@ -46,15 +46,15 @@
 				<div class="site-text site-block mypublish-block">
 					<!--基础信息内容-->
 					<div class="content">
-						<h1 style="width: 100%; text-align: center;" th:value="${helpInfo.title}">${helpInfo.title }<small th:value="helpInfo.tip"> - 备注:${helpInfo.tip }</small></h1>
+						<h1 style="width: 100%; text-align: center;" th:text="${helpInfo.title}"><small> - 备注:[[${helpInfo.tip }]]</small></h1>
 						<hr />
-						<h2 style="width: 100%; text-align: center;">赏金: <big style="color: red;" th:value="${helpInfo.reward }">${helpInfo.reward }</big>元</h2>
+						<h2 style="width: 100%; text-align: center;">金额: <big style="color: red;">[[${helpInfo.reward}]]</big>元</h2>
 						<hr />
-						<p style="text-align: center;" th:value="${helpInfo.content }">${helpInfo.content }</p>
+						[(${helpInfo.content })]
 						<hr />
-						<p>创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}">${helpInfo.crettime }</b> | 截止时间:<b th:value="${helpInfo.timeout }" style="color:#555555">${dateValue }</b></p>
+						<p>创建时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.crettime,'yyyy-MM-dd')}"></b> | 截止时间:<b th:text="${#dates.format(helpInfo.timeout,'yyyy-MM-dd') }" style="color:#555555"></b></p>
 						<h3 style="display: inline-block;">联系电话<big><a style="color: red;" th:value="${userPrimInfo.userphone }">
-							${userPrimInfo.userphone }
+							[[${userPrimInfo.userphone }]]
 							</a></big></h3>
 					</div>
 				</div>

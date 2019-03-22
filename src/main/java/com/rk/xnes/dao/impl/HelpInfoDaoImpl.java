@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -84,8 +86,8 @@ public class HelpInfoDaoImpl implements HelpInfoDao {
 					helpInfo = new HelpInfo();
 					helpInfo.setId(rs.getInt(1));
 					helpInfo.setUserid(rs.getInt(2));
-					helpInfo.setCrettime(rs.getTimestamp(3));
 					helpInfo.setTimeout(rs.getLong(4));
+					helpInfo.setCrettime(rs.getTimestamp(3));
 					helpInfo.setTitle(rs.getString(5));
 					helpInfo.setContent(rs.getString(6));
 					helpInfo.setTip(rs.getString(7));
@@ -93,12 +95,18 @@ public class HelpInfoDaoImpl implements HelpInfoDao {
 					helpInfo.setReward(rs.getInt(9));
 					list.add(helpInfo);
 				}while(rs.next());
-				
 				return list;
 			}
 		};
 		//≤È—Ø
-		List<HelpInfo> list = jdbct.queryForObject(sql, rowMapper, userId);
+		List<HelpInfo> list;
+		try{
+			list = jdbct.queryForObject(sql, rowMapper, userId);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("sorry but here is something wrong");
+			return null;
+		}
 		return list;
 	}
 
@@ -120,8 +128,8 @@ public class HelpInfoDaoImpl implements HelpInfoDao {
 					helpInfo.setTitle(rs.getString(5));
 					helpInfo.setContent(rs.getString(6));
 					helpInfo.setTip(rs.getString(7));
-					helpInfo.setImgpath(rs.getString(8));
 					helpInfo.setReward(rs.getInt(9));
+					helpInfo.setImgpath(rs.getString(8));
 					list.add(helpInfo);
 				}while(rs.next());
 				

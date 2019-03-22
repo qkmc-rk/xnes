@@ -29,7 +29,7 @@
 					<a href="center">个人中心<span class="layui-badge-dot"></span></a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="center" th:value="${userPrimInfo.neckname}"><img th:src="@{/img/login/avtar.png}" class="layui-nav-img" /></a>
+					<img th:src="@{/img/login/avtar.png}" class="layui-nav-img" /><a style="display: inline" href="center" th:text="${userPrimInfo.neckname}"></a>
 				</li>
 			</ul>
 			<!--//导航栏-->
@@ -46,20 +46,12 @@
 				<div class="site-text site-block mypublish-block">
 					<!--基础信息内容-->
 					<div class="layui-elem-quote mypublish1" th:each="helpInfo,iterStat:${helpInfoList}">
-						<p><i style="color: red;" th:value="${helpInfo.title}"></i> | 创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}"></b> | 截止时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.timeout,'yyyy-mm-dd')}"></b> | 赏金<b th:value="${helpInfo.reward}"></b></p>
+						<p><i style="color: red;" th:text="${helpInfo.title}"></i> | 创建时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.crettime,'yyyy-MM-dd')}"></b> | 截止时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.timeout,'yyyy-MM-dd')}"></b> | 赏金<b th:text="${helpInfo.reward}"></b></p>
 						<p>[
-							<a href="work_detail?infoid=[[${helpInfo.id }]]">查看</a>]
+							<a th:href="'work_detail?infoid=' + ${helpInfo.id}">查看</a>]
 						</p>
 
 					</div>
-					<!--<c:forEach items="${helpInfoList }" var="helpInfo" varStatus="status">
-						<div class="layui-elem-quote mypublish1">
-							<p><i style="color: red;">${helpInfo.title }</i> | 创建时间:<b style="color:#555555"><fmt:formatDate value="${helpInfo.crettime }" pattern="yyyy-MM-dd"/></b> | 截止时间:<b style="color:#555555"><jsp:setProperty name="dateValue" property="time" value="${helpInfo.timeout }"/><fmt:formatDate value="${dateValue }" pattern="yyyy-MM-dd"/></b> | 赏金<b>${helpInfo.reward }</b></p>
-							<p>[
-								<a href="work_detail?infoid=${helpInfo.id }">查看</a>]
-							</p>
-						</div>
-					</c:forEach>-->
 				</div>
 			</div>
 		</div>

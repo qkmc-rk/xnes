@@ -30,7 +30,8 @@ public class UserLoginnterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("user") == null) {
-			System.out.print("用户session原因被挡了");
+			System.out.print("user's session is wrong");
+			resp.getWriter().print("you haven't login,please login!");
 			return false;
 		}
 		return true;

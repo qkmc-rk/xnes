@@ -18,7 +18,7 @@
 			<!--导航栏-->
 			<ul class="layui-nav" layui-filter="">
 				<li class="layui-nav-item logo">
-					<h2>跑腿任务（二手物品）详情- 校内二手交易生活平台</h2>
+					<h2>跑腿任务/二手物品 详情- 校内二手交易生活平台</h2>
 				</li>
 				<!--页面链接-->
 				<li class="layui-nav-item"><a href="publish">发布二手/跑腿任务</a></li>
@@ -30,7 +30,7 @@
 					<a href="center">个人中心<span class="layui-badge-dot"></span></a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="center" th:value="${userPrimInfo.neckname}"><img th:src="@{/img/login/avtar.png}" class="layui-nav-img" />${userPrimInfo.neckname }</a>
+					<img th:src="@{/img/login/avtar.png}" class="layui-nav-img" /><a style="display: inline" href="center" th:text="${userPrimInfo.neckname}"></a>
 				</li>
 			</ul>
 			<!--//导航栏-->
@@ -49,13 +49,13 @@
 					<div class="content">
 						<input type="text" id="infoid" th:value="${helpInfo.id }" style="display: none;">
 						<input type="text" id="rootPath" th:value="${#httpServletRequest.getContextPath()}" style="display: none;">
-						<h1 style="width: 100%; text-align: center;" th:value="${helpInfo.title }">{helpInfo.title }<small> - 备注:[[${helpInfo.tip }]]</small></h1>
+						<h1 style="width: 100%; text-align: center;" th:text="${helpInfo.title }"><small> - 备注:[[${helpInfo.tip }]]</small></h1>
 						<hr />
-						<h2 style="width: 100%; text-align: center;">赏金: <big style="color: red;" th:value="${helpInfo.reward }">{helpInfo.reward }</big>元</h2>
+						<h2 style="width: 100%; text-align: center;">金额: <big style="color: red;" th:text="${helpInfo.reward }"></big>元</h2>
 						<hr />
-						<p style="text-align: center;" th:value="${helpInfo.content }">{helpInfo.content }</p>
+							[(${helpInfo.content})]
 						<hr />
-						<p>创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}" ></b> | 截止时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.timeout,'yyyy-mm-dd')}"></b></p>
+						<p>创建时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.crettime,'yyyy-MM-dd')}" ></b> | 截止时间:<b style="color:#555555" th:text="${#dates.format(helpInfo.timeout,'yyyy-MM-dd')}"></b></p>
 						<h3 style="display: inline-block;">联系电话<big><a style="color: red;">
                             <p th:if="${helpState.receiverid} == ${user.id}">[[${userPrimInfo.userphone }]]</p>
                             <p th:if="${helpState.receiverid} != ${user.id}">***********</p>
