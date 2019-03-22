@@ -30,7 +30,7 @@
 						class="layui-badge-dot"></span></a></li>
 				<li class="layui-nav-item"><a href="center" th:value="${userPrimInfo.neckname}"><img
 						th:src="@{/img/login/avtar.png}"
-						class="layui-nav-img" />${userPrimInfo.neckname }</a></li>
+						class="layui-nav-img" /></a></li>
 			</ul>
 			<!--//导航栏-->
 			<!--主要内容-->
@@ -47,24 +47,23 @@
 					<!--基础信息内容-->
 					<div class="layui-elem-quote mypublish1" th:each="helpInfo,iterStat:${helpInfoList}">
 						<p>
-							<i style="color: red;" th:value="${helpInfo.title}">${helpInfo.title }</i>
-							| 创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}">
-							helpInfo.crettime /></b>
+							<i style="color: red;" th:value="${helpInfo.title}"></i>
+							| 创建时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.crettime,'yyyy-mm-dd')}"></b>
                             | 截止时间:<b style="color:#555555" th:value="${#dates.format(helpInfo.timeout,'yyyy-mm-dd')}"></b>
                             <!--任务状态:  -->
 
-                            | <big style="color:green" th:if="${helpStateList[iterStat].received} gt 0 && ${helpStateList[iterStat].achieved gt 0}"> 已完成</big>
-                            <big style="color:red" th:if="${helpStateList[iterStat].received} gt 0 && ${helpStateList[iterStat].achieved lt 1}"> 已被接受</big>
-                            | <big style="color:gray" th:if="${helpStateList[iterStat].received} lt 1 && ${helpStateList[iterStat].achieved lt 1}"> 等待接受</big>
+                            | <big style="color:green" th:if="${helpStateList[iterStat.index].received > 0 && helpStateList[iterStat.index].achieved > 0}"> 已完成</big>
+                            <big style="color:red" th:if="${helpStateList[iterStat.index].received > 0 && helpStateList[iterStat.index].achieved < 1}"> 已被接受</big>
+                            | <big style="color:gray" th:if="${helpStateList[iterStat.index].received < 1 && helpStateList[iterStat.index].achieved < 1}"> 等待接受</big>
 
                             <!--已完成-->
-                            [<a th:if="${helpStateList[iterStat].achieved} gt 0" href="my_detail?infoid=${helpInfo.id }">查看</a>]
+                            [<a th:if="${helpStateList[iterStat.index].achieved} > 0" href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
 
                             <!--未完成-->
                             <!--已经被接收-->
-                            [<a th:if="${helpStateList[iterStat].received} == 1 && ${helpStateList[iterStat].achieved lt 1}" href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
+                            [<a th:if="${helpStateList[iterStat.index].received == 1 && helpStateList[iterStat.index].achieved < 1}" href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]
                             <!--未被接收-->
-                            <div th:if="${helpStateList[iterStat].received} == 0 && ${helpStateList[iterStat].achieved lt 1}">
+                            <div th:if="${helpStateList[iterStat.index].received == 0 && helpStateList[iterStat.index].achieved < 1}">
                                 [
                                 <a href="javascript:delete_([[${helpInfo.id }]]);">删除</a>] | [
                                 <a href="javascript:showchangeMoney([[${helpInfo.id }]]);">更改赏金</a>] | [
@@ -73,55 +72,6 @@
                             </div>
                         </p>
 					</div>
-
-
-					<!--<c:forEach items="${helpInfoList }" var="helpInfo" varStatus="status">-->
-						<!--<div class="layui-elem-quote mypublish1">-->
-							<!--<p>-->
-								<!--<i style="color: red;">${helpInfo.title }</i> -->
-								<!--| 创建时间:<b style="color:#555555">-->
-								<!--<fmt:formatDate value="${helpInfo.crettime }" pattern="yyyy-MM-dd"/></b>-->
-								<!--| 截止时间:<b style="color:#555555"><jsp:setProperty name="dateValue" property="time" value="${helpInfo.timeout }"/>-->
-								<!--<fmt:formatDate value="${dateValue }" pattern="yyyy-MM-dd"/></b> | 赏金<b>${helpInfo.reward }</b>元-->
-								<!--&lt;!&ndash;任务状态:  &ndash;&gt;-->
-
-
-								<!--<c:if test="${helpStateList[status.index].received > 0}">-->
-									<!--<c:if test="${helpStateList[status.index].achieved > 0}">-->
-										<!--| <big style="color:green"> 已完成</big>-->
-									<!--</c:if>-->
-									<!--<c:if test="${helpStateList[status.index].achieved < 1}">-->
-										<!--| <big style="color:red"> 已被接受</big>-->
-									<!--</c:if>-->
-									<!---->
-								<!--</c:if>-->
-								<!--<c:if test="${helpStateList[status.index].received < 1 && helpStateList[status.index].achieved < 1}">-->
-									<!--| <big style="color:gray"> 等待接受</big>-->
-								<!--</c:if>-->
-							<!--</p>-->
-							<!--<p>-->
-							<!--&lt;!&ndash;已完成!  &ndash;&gt;-->
-							<!--<c:if test="${helpStateList[status.index].achieved > 0}">-->
-								<!--[<a href="my_detail?infoid=${helpInfo.id }">查看</a>]-->
-							<!--</c:if>-->
-							<!--&lt;!&ndash;未完成  &ndash;&gt;-->
-							<!--<c:if test="${helpStateList[status.index].achieved < 1}">-->
-								<!--&lt;!&ndash;已被接受  &ndash;&gt;-->
-								<!--<c:if test="${helpStateList[status.index].received == 1}">-->
-									<!--[<a href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]-->
-								<!--</c:if>-->
-								<!--&lt;!&ndash;未被接收  &ndash;&gt;-->
-								<!--<c:if test="${helpStateList[status.index].received == 0}">-->
-									<!--[-->
-									<!--<a href="javascript:delete_([[${helpInfo.id }]]);">删除</a>] | [-->
-									<!--<a href="javascript:showchangeMoney([[${helpInfo.id }]]);">更改赏金</a>] | [-->
-									<!--<a href="javascript:showchangeDate([[${helpInfo.id }]]);">更改时间</a>] | [-->
-									<!--<a href="my_detail?infoid=[[${helpInfo.id }]]">查看</a>]-->
-								<!--</c:if>-->
-							<!--</c:if>-->
-							<!--</p>-->
-						<!--</div>-->
-					<!--</c:forEach>-->
 				</div>
 			</div>
 		</div>
@@ -153,7 +103,7 @@
 
 				$.ajax({
 					type:"post",
-					url:'/task/' + 'delete',
+					url:'task/' + 'delete',
 					async:true,
 					data:{
 						'infoid':infoid
@@ -181,7 +131,7 @@
 				var infoid = objs;
 				$.ajax({
 					type:"post",
-					url:"/task/changereward",
+					url:"task/changereward",
 					async:true,
 					data:{
 						'infoid':infoid,
@@ -209,7 +159,7 @@
 				var infoid = objs;
 				$.ajax({
 					type:"post",
-					url:"/task/changetimeout",
+					url:"task/changetimeout",
 					async:true,
 					data:{
 						'infoid':infoid,
