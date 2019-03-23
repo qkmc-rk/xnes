@@ -6,27 +6,27 @@ import java.security.NoSuchAlgorithmException;
 public class AppMD5Util {  
     
 	/**
-	 * ¼ÓÑÎÊµÏÖ
+	 * åŠ ç›å®ç°
 	 * @param password
 	 * @return
 	 */
 	 public static String md5Password(String password) {
 		 try{
-			 // µÃµ½Ò»¸öĞÅÏ¢ÕªÒªÆ÷
+			 // å¾—åˆ°ä¸€ä¸ªä¿¡æ¯æ‘˜è¦å™¨
 			 MessageDigest digest = MessageDigest.getInstance("md5");
 			 byte[] result = digest.digest(password.getBytes());
 			 StringBuffer buffer = new StringBuffer();
-			 // °ÑÃ¿Ò»¸öbyte ×öÒ»¸öÓëÔËËã 0xff;
+			 // æŠŠæ¯ä¸€ä¸ªbyte åšä¸€ä¸ªä¸è¿ç®— 0xff;
 			 for (byte b : result) {
-				 // ÓëÔËËã
-				 int number = b & 0xff;// ¼ÓÑÎ
+				 // ä¸è¿ç®—
+				 int number = b & 0xff;// åŠ ç›
 				 String str = Integer.toHexString(number);
 				 if (str.length() == 1) {
 					 buffer.append("0");
 				 }
 	             buffer.append(str);
 	          }
-			 // ±ê×¼µÄmd5¼ÓÃÜºóµÄ½á¹û
+			 // æ ‡å‡†çš„md5åŠ å¯†åçš„ç»“æœ
 	         return buffer.toString();
 	     }catch (NoSuchAlgorithmException e) {
 	       e.printStackTrace();
@@ -35,7 +35,7 @@ public class AppMD5Util {
 	 }
 	
 	/**
-	 * ÆÕÍ¨¼ÓÃÜ·½Ê½
+	 * æ™®é€šåŠ å¯†æ–¹å¼
 	 * @param key
 	 * @return
 	 */
@@ -45,13 +45,13 @@ public class AppMD5Util {
         };
         try {
             byte[] btInput = key.getBytes();
-            // »ñµÃMD5ÕªÒªËã·¨µÄ MessageDigest ¶ÔÏó
+            // è·å¾—MD5æ‘˜è¦ç®—æ³•çš„ MessageDigest å¯¹è±¡
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
-            // Ê¹ÓÃÖ¸¶¨µÄ×Ö½Ú¸üĞÂÕªÒª
+            // ä½¿ç”¨æŒ‡å®šçš„å­—èŠ‚æ›´æ–°æ‘˜è¦
             mdInst.update(btInput);
-            // »ñµÃÃÜÎÄ
+            // è·å¾—å¯†æ–‡
             byte[] md = mdInst.digest();
-            // °ÑÃÜÎÄ×ª»»³ÉÊ®Áù½øÖÆµÄ×Ö·û´®ĞÎÊ½
+            // æŠŠå¯†æ–‡è½¬æ¢æˆåå…­è¿›åˆ¶çš„å­—ç¬¦ä¸²å½¢å¼
             int j = md.length;
             char str[] = new char[j * 2];
             int k = 0;

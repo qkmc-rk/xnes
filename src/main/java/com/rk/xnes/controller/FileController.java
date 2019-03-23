@@ -48,7 +48,7 @@ public class FileController {
 			InputStream inputStream  = img.getInputStream();
 			String key = QiNiuFileUtil.uploadToQiNiu(inputStream,fileName);
 			String dns = QiNiuFileUtil.getDns();
-			System.out.println("{\\\"errno\\\": 0,\\\"data\\\": [\\\" \" + dns + \"/\" + key + \"\\\"]}");
+			System.out.println("{\"errno\": 0,\"data\": [\" " + dns + "/" + key + "\"]}");
 			return "{\"errno\": 0,\"data\": [\" " + dns + "/" + key + "\"]}";
 		}else {
 			return "{\"errno\": -1}";

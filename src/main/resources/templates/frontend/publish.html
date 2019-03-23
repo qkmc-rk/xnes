@@ -86,6 +86,7 @@
 						</p>
 						<p style="color: orange" placeholder="*{提示:为美观起见,可尽量将内容居中}"></p>
 					</div>
+					<p>图片上传超时时间为60s，为成功上传，请不要传大尺寸照片(不大于5MB)</p>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
 						</div>
@@ -124,6 +125,7 @@
 		/*配置文件上传信息*/
 		editor.customConfig.uploadImgServer = rootPath + "/upload/uploadimg";
 		editor.customConfig.uploadFileName = "img";
+		editor.customConfig.uploadImgTimeout = 60000;
 		/*上传完成的动作*/
 		editor.customConfig.uploadImgHooks = {
 			customInsert : function(insertImg, result, editor) {
