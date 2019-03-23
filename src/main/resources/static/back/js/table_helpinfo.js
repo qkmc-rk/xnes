@@ -24,10 +24,12 @@ layui.use('table', function(){
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         var tr = obj.tr; //获得当前行 tr 的DOM对象
 
+        var root =  $('#rootPath').val();
+
         if(layEvent === 'detail'){ //查看
             //alert("查看" + data.id);
             //跳转页面
-            window.open('<%= request.getContextPath()%>' + '/user/work_detail?infoid=' + data.id);
+            window.open(root + '/user/work_detail?infoid=' + data.id);
         } else if(layEvent === 'del'){ //删除
             layer.confirm('确认删除?', function(index){
                 //发送删除指令

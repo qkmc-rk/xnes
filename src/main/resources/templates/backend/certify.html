@@ -9,6 +9,9 @@
 		<script th:src="@{/back/js/public.js}" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+		<!--隐藏数据-->
+		<input th:id="rootPath" th:value="${#httpServletRequest.getContextPath()}" style="display: none" />
+		<!--/隐藏数据-->
 		<div class="layui-header">
 			<div class="top-bar">
 				<h1 style="position: absolute; margin-left: 10px; margin-top: 12px; color: white;"><a href="index" style="color: #FFB800;">校内二手交易生活平台</a></h1>
@@ -54,6 +57,20 @@
 		<script type="text/html" id="barCRUD">
  		 	<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
  		 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="pass">审核通过</a>
+		</script>
+
+		<script th:inline="javascript">
+            function loginoff(){
+                /* 取消localStorage */
+                var ls = window.localStorage;
+                ls.clear();
+                successMsg();
+                //thymeleaf语法
+
+                /*<![CDATA[*/
+                window.location.href =/*[[${#httpServletRequest.getContextPath()}]]*/ "";
+                /*]]>*/
+            }
 		</script>
 	</body>
 </html>

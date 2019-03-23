@@ -72,6 +72,14 @@
                                 <a th:href="'javascript:showchangeDate(' + ${helpInfo.id} +');'">[更改时间]</a> |
                                 <a th:href="'my_detail?infoid=' + ${helpInfo.id }">[查看]</a>
                             </div>
+
+							<div th:if="${helpStateList[iterStat.index].received < 1 && helpStateList[iterStat.index].achieved < 1}">
+
+								<a th:href="'javascript:delete_('+ ${helpInfo.id} +');'">[删除]</a> |
+								<a th:href="'javascript:showchangeMoney(' + ${helpInfo.id} + ');'">[更改金额]</a> |
+								<a th:href="'javascript:showchangeDate(' + ${helpInfo.id} +');'">[更改时间]</a> |
+								<a th:href="'my_detail?infoid=' + ${helpInfo.id }">[查看]</a>
+							</div>
                         </p>
 					</div>
 				</div>

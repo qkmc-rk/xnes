@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 ======`-.____`-.___\_____/___.-`____.-'====== 
                    `=---=' 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-         ∑◊Ê±£””       ”¿ŒﬁBUG 
+         ‰ΩõÁ•ñ‰øù‰Ωë       Ê∞∏Êó†BUG 
 */
 public class AdminPageInterceptor implements HandlerInterceptor{
 
@@ -35,7 +35,8 @@ public class AdminPageInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		if(request.getSession().getAttribute("user") == null){
-			System.out.println("π‹¿Ì‘±±ªµ≤◊°¡À£°");
+			System.out.println("admin is not loginÔºÅ");
+			response.getWriter().println("admin is not login");
 			return false;
 		}
 
