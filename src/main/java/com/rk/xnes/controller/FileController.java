@@ -2,9 +2,11 @@ package com.rk.xnes.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpSession;
 
+import com.rk.xnes.util.QiNiuFileUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,15 +45,11 @@ public class FileController {
 			System.out.println("找到文件");
 			//将图片存到uploadfile中去
 			String fileName = img.getOriginalFilename();
-			fileName = fileName.hashCode() + fileName;
-			System.out.println("文件名" + fileName);
-			//定义一个文件
-			String imgPath = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/";
-			System.out.println("路径3:" + imgPath);
-			File file = new File(imgPath,fileName);
-			img.transferTo(file);
-			System.out.println("上传成功23");
-			return "{\"errno\": 0,\"data\": [\" " + fileName + "\"]}";
+			InputStream inputStream  = img.getInputStream();
+			String key = QiNiuFileUtil.uploadToQiNiu(inputStream,fileName);
+			String dns = QiNiuFileUtil.getDns();
+			System.out.println("{\\\"errno\\\": 0,\\\"data\\\": [\\\" \" + dns + \"/\" + key + \"\\\"]}");
+			return "{\"errno\": 0,\"data\": [\" " + dns + "/" + key + "\"]}";
 		}else {
 			return "{\"errno\": -1}";
 		}

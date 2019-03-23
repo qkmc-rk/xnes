@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
+import com.rk.xnes.util.QiNiuFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
@@ -38,12 +39,12 @@ import com.rk.xnes.util.JsonResult;
 ======`-.____`-.___\_____/___.-`____.-'====== 
                    `=---=' 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
-         ·ğ×æ±£ÓÓ       ÓÀÎŞBUG 
+         ä½›ç¥–ä¿ä½‘       æ°¸æ— BUG 
 */
 /**
- * <p>Ò»¸öÓÃ»§ÊµÃûÈÏÖ¤µÄcontroller
- * <p>ÄÚÈİÔÚÓÚ:ÓÃ»§¿ÉÒÔÍ¨¹ıÌá½»ÊµÃûÈÏÖ¤ĞÅÏ¢,È»ºóµÈ´ı¹ÜÀíÔ±ÉóºË
- * <p>ÉóºËÍ¨¹ıÔò¿ÉÒÔ½øĞĞtaskÏà¹ØµÄ²Ù×÷,·ñÔò²»ÄÜ.
+ * <p>ä¸€ä¸ªç”¨æˆ·å®åè®¤è¯çš„controller
+ * <p>å†…å®¹åœ¨äº:ç”¨æˆ·å¯ä»¥é€šè¿‡æäº¤å®åè®¤è¯ä¿¡æ¯,ç„¶åç­‰å¾…ç®¡ç†å‘˜å®¡æ ¸
+ * <p>å®¡æ ¸é€šè¿‡åˆ™å¯ä»¥è¿›è¡Œtaskç›¸å…³çš„æ“ä½œ,å¦åˆ™ä¸èƒ½.
  * @author Mrruan
  *
  */
@@ -58,27 +59,17 @@ public class CertifyController {
 	@ResponseBody
 	public String certify(@RequestParam("file") MultipartFile img,HttpSession session) throws IllegalStateException, IOException {
 		User user = (User)session.getAttribute("user");
-		System.out.println("¿ªÊ¼ÉÏ´«ÊµÃûÕÕÆ¬");
-		
+		System.out.println("å¼€å§‹ä¸Šä¼ å®åç…§ç‰‡");
+
 		String fileName = img.getOriginalFilename();
-		fileName = fileName.hashCode() + fileName;
-		
-		//String realPath = "/idcardimg";
-		String imgPath = ClassUtils.getDefaultClassLoader().getResource("").getPath()+"static/";
-		System.out.println("Â·¾¶3:" + imgPath);
-		File file = new File(imgPath,fileName);
-		img.transferTo(file);
-		System.out.println("ÉÏ´«³É¹¦23");
-		
-		//È»ºó±£´æµ½Êı¾İ¿â.
-		if(taskService.usercertification(user.getId(), fileName))
+
+		String key = QiNiuFileUtil.uploadToQiNiu(img.getInputStream(),fileName);
+		String dns = QiNiuFileUtil.getDns();
+		//ç„¶åä¿å­˜åˆ°æ•°æ®åº“.
+		if(taskService.usercertification(user.getId(), dns + "/" + fileName))
 			return JsonResult.RS_TRUE;
 		return JsonResult.RS_TRUE;
 	}
-	
-	
-	
-	
 }
 
 

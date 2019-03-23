@@ -30,8 +30,7 @@ layui.use('table', function(){
             //alert("查看id:" + data.id);
             //查看操作首先获取图片名字
             var pic = data.cardpath;
-            var root = $('#rootPath').val();
-            window.open(root + '/' + pic);
+            window.open(pic);
 
 
         } else if(layEvent === 'pass'){ //删除

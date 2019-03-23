@@ -23,7 +23,7 @@ function tologin(){
 			if(obj.result == 'false'){
 				failedMsg();
 			}else{
-				// 将token和useri存到localStorage
+				// 将token和userId存到localStorage
 				var ls = window.localStorage;
 				ls.setItem("userid", obj.userid);
 				ls.setItem("token", obj.token);
